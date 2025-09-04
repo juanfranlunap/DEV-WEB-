@@ -1,3 +1,43 @@
 body {
-    margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 40px;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+
+div {
+  width: 150px;
+  height: 150px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute; 
+}
+
+
+div:nth-of-type(1) {
+  background-color: yellow;
+  color: black; 
+  top: 100px;
+  left: 100px;
+}
+
+
+div:nth-of-type(2) {
+  background-color: blue;
+  top: calc(100px + 150px);   
+  left: calc(100px + 150px);  
+}
+
+
+div:nth-of-type(3) {
+  background-color: red;
+  top: calc(100px + 300px);   
+  left: calc(100px + 300px);  
 }
