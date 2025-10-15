@@ -3,31 +3,41 @@ Pig Latin
 */
 
 function igpayAtinlay(str) {
-  // TODO: Initialize the word array properly
+
+  var text = document.getElementById("txtVal").value;
+  var output = document.getElementById("pigLatLbl");
+
+  if (!text) {
+    output.textContent = "Please enter a word";
+    return;
+  }
+  
   var returnArray = [],
     wordArray = [];
-  // TODO: make sure that the output is being properly built to produce the desired result.
+    wordArray= text.split(" ");
   for (var i = 0; i < wordArray.length; i++) {
     var word = wordArray[i];
     var beginning = word.charAt(0);
 
     if (/[aeiouAEIOU]/.test(beginning)) {
-      returnArray.push(word);
+      returnArray.push(word+ "way");
       continue;
     }
+   else {
+      var Cons_Clouser = "";
+      var word2 = "";
+      for (var ii = 0; ii < word.length; ii++) {
+        var letter = word.charAt(ii);
 
-    for (var ii = 1; ii < word.length; ii++) {
-      if (/[aeiouAEIOU]/.test(word.charAt(ii))) {
-        break;
-      } else {
-        beginning += word.charAt(ii);
+        if (/[aeiouAEIOU]/.test(letter)) {
+          word2 = word.slice(ii); //funcion slice sirve para separar stringd
+          break;
+        } else {
+          Cons_Clouser += letter; 
+        }
       }
+      returnArray.push(word2 + Cons_Clouser + "ay");
     }
   }
-  return returnArray.join(" ");
+  output.textContent = returnArray.join(" ");
 }
-
-// Some examples of expected outputs
-console.log(igpayAtinlay("pizza")); // "izzapay"
-console.log(igpayAtinlay("apple")); // "appleway"
-console.log(igpayAtinlay("happy meal")); // "appyhay ealmay"
