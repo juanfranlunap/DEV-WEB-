@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express test</title>
+</head>
+
+<body>
+    <body>
+  <% if (locals.error) { %>
+    <h3 style="color:red;"><%= error %></h3>
+  <% } %>
+
+  <h2>Register Name</h2>
+  <form action="/greet" method="get">
+    <input type="text" name="name" placeholder="Enter name" />
+    <input type="submit" value="Add Name" />
+  </form>
+
+  <% if (names.length > 0) { %>
+    <h3>Registered Names:</h3>
+    <ul>
+      <% names.forEach((n, i) => { %>
+        <li><a href="/wazzup?index=<%= i %>"><%= n %></a></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <hr />
+
+  <h2>TODO List</h2>
+  <form action="/task" method="post">
+    <input type="text" name="task" placeholder="New task" />
+    <input type="submit" value="Add Task" />
+  </form>
+
+  <% if (tasks.length > 0) { %>
+    <ul>
+      <% tasks.forEach((t, i) => { %>
+        <li>
+          <%= t %>
+          <a href="/task/delete?index=<%= i %>">x</a>
+          <a href="/task/up?index=<%= i %>">⬆</a>
+          <a href="/task/down?index=<%= i %>">⬇</a>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</body>
+
+</html>
