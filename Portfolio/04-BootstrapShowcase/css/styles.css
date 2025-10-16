@@ -177,3 +177,12 @@ img {
 .card li {
   margin: 5px 0;
 }
+
+.carousel-caption {
+  bottom: 50%;
+  transform: translateY(50%);
+  background-color: rgba(0, 0, 0, 0.5); 
+  border-radius: 0.5rem; 
+  padding: 0.5rem 1rem;
+}
+
