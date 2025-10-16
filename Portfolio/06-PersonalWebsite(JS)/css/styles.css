@@ -1,3 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,400&family=Montserrat:wght@400;700&family=Sacramento&display=swap');
+
+
 body {
+  font-family: 'Merriweather', serif;
+  background-color: #f9f9f9;  
+  text-align: center;
   margin: 0;
+  padding: 0;
 }
+
+
+h1 {
+  font-family: 'Sacramento', cursive;
+  font-size: 5.5rem;
+  color: #2c7a7b; 
+  margin: 50px 0;
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  padding-bottom: 10px;
+  color: #ff7f50; 
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #4a5568; 
+}
+
+
+hr {
+  border: none;
+  border-top: 6px dotted #EAF6F6;
+  width: 4%;
+  margin: 50px 100px;
+}
+
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: inherit;
+}
+
+a:hover {
+  color: green;
+}
+
+
+img {
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 50%; 
+}
+
+
+.card {
+  background-color: #ffffff;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  width: 85%;
+}
+
+
+.card:nth-of-type(even) {
+  background-color: #f1f5f9;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.column {
+  flex: 30%;
+  max-width: 300px;
+  padding: 0 10px;
+}
+
+.card img {
+  border-radius: 50%;
+}
+
+.container {
+  padding: 10px;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #2c7a7b;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.button:hover {
+  background-color: green;
+}
+
+#schedule-form form {
+  border: 2px dotted #2c7a7b;
+  background-color: #e6fffa;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+#schedule-form input,
+#schedule-form select,
+#schedule-form textarea {
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+}
+
+
+.mountain-scene {
+  position: relative;
+  width: 100%;
+  height: 400px; 
+  margin-top: 50px;
+}
+
+.mountain {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 100%;
+  z-index: 1;
+}
+
+.cloud {
+  position: sticky;
+  top: 20px; 
+  width: 150px;
+  z-index: 2;
+  opacity: 0.9;
+}
+
+.cloud1 {
+  left: 20%;
+}
+
+.cloud2 {
+  right: 20%;
+}
+
+
+.card img.destination {
+  max-width: 400px;  
+  height: auto;
+  border-radius: 10px;
+  margin: 15px 0;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.card li {
+  margin: 5px 0;
+}
+
+.carousel-caption {
+  bottom: 50%;
+  transform: translateY(50%);
+  background-color: rgba(0, 0, 0, 0.5); 
+  border-radius: 0.5rem; 
+  padding: 0.5rem 1rem;
+}
+
