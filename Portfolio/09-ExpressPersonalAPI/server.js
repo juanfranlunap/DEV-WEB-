@@ -97,5 +97,5 @@ app.use((err, req, res, next) => {
 
 const PORT = 3000;
 app.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
+  console.log(` Server running at http://localhost:${PORT}`);
 });
