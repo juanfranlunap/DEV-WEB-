@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mongo DB - F1 DB</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+
+  <body>
+    <img src="/images/StarLion.png" alt="lion brewery" />
+    <h1>Welcome to my F1 DB</h1>
+
+    <form action="<%= editingDriver ? ('/driver/edit/' + editingDriver._id) : '/driver' %>" method="POST">
+      <h2>Driver information</h2>
+      <input type="number" name="num" id="num" placeholder="Number" value="<%= editingDriver ? editingDriver.num : '' %>" />
+      <input type="text" name="code" id="code" placeholder="Code" value="<%= editingDriver ? editingDriver.code : '' %>" />
+      <input type="text" name="forename" id="forename" placeholder="Forename" value="<%= editingDriver ? editingDriver.forename : '' %>" />
+      <input type="text" name="surname" id="surname" placeholder="Surname" value="<%= editingDriver ? editingDriver.surname : '' %>" />
+      <br />
+      <label for="dob">Date of birth: </label>
+      <input type="date" name="dob" id="dob" value="<%= editingDriver && editingDriver.dob ? editingDriver.dob.toISOString().split('T')[0] : '' %>" />
+      <label for="url">Biography URL: </label>
+      <input type="url" name="url" id="url" value="<%= editingDriver ? editingDriver.url : '' %>" />
+      <br />
+      <label for="nation">Nationality: </label>
+      <select name="nationality" id="nation">
+        <% countries.forEach(c => { %>
+          <option value="<%= c.code %>" <%= editingDriver && editingDriver.nationality === c.code ? 'selected' : '' %>><%= c.label %></option>
+        <% }); %>
+      </select>
+      <label for="team">Team: </label>
+      <select name="teamId" id="team">
+        <% teams.forEach(t => { %>
+          <option value="<%= t.id %>" <%= editingDriver && editingDriver.team && editingDriver.team.id === t.id ? 'selected' : '' %>><%= t.name %></option>
+        <% }); %>
+      </select>
+      <p> <button type="submit"><%= editingDriver ? 'Save changes' : 'Add Driver' %></button> </p>
+
+    </form>
+
+    <p><a href="/drivers">View Drivers</a></p>
+
+    <hr />
+
+    <div>
+      <button id="show-drivers">Show Drivers</button>
+      <button id="show-teams">Show Teams</button>
+    </div>
+
+    <!-- hidden selects to clone options into inline editors -->
+    <select id="nation-options" style="display:none;">
+      <% countries.forEach(c => { %>
+        <option value="<%= c.code %>"><%= c.label %></option>
+      <% }); %>
+    </select>
+
+    <select id="team-options" style="display:none;">
+      <% teams.forEach(t => { %>
+        <option value="<%= t.id %>"><%= t.name %></option>
+      <% }); %>
+    </select>
+
+    <div id="drivers-section">
+      <h2>Drivers</h2>
+      <table border="1" cellpadding="6">
+        <tr>
+          <th>#</th>
+          <th>Code</th>
+          <th>Name</th>
+          <th>DOB</th>
+          <th>Nationality</th>
+          <th>Team</th>
+          <th>URL</th>
+          <th>Actions</th>
+        </tr>
+        <% drivers.forEach(d => { %>
+          <tr data-id="<%= d._id %>">
+            <td class="editable" data-field="num" data-value="<%= d.num %>"><%= d.num %></td>
+            <td class="editable" data-field="code" data-value="<%= d.code %>"><%= d.code %></td>
+            <td class="editable" data-field="forename" data-value="<%= d.forename %>" data-surname="<%= d.surname %>"><%= d.forename %> <span style="font-weight:600;"><%= d.surname %></span></td>
+            <td class="editable" data-field="dob" data-value="<%= d.dob ? d.dob.toISOString().split('T')[0] : '' %>"><%= d.dob ? d.dob.toISOString().split('T')[0] : '' %></td>
+            <td class="editable" data-field="nationality" data-value="<%= d.nationality %>"><%= d.nationality %></td>
+            <td class="editable" data-field="teamId" data-value="<%= d.team ? d.team.id : '' %>"><%= d.team ? d.team.name : 'N/A' %></td>
+            <td class="editable" data-field="url" data-value="<%= d.url %>"><a href="<%= d.url %>" target="_blank">link</a></td>
+            <td class="actions">
+              <a href="#" class="edit-btn" data-id="<%= d._id %>">Edit</a> |
+              <a href="/driver/delete/<%= d._id %>" onclick="return confirm('Delete this driver?')">Delete</a>
+            </td>
+          </tr>
+        <% }); %>
+      </table>
+    </div>
+
+    <div id="teams-section" style="display:none; margin-top: 16px;">
+      <h2>Teams</h2>
+      <% teams.forEach(t => { %>
+        <section style="border:1px solid #ddd; padding:8px; margin-bottom:8px;">
+          <h3><%= t.name %></h3>
+          <p>Nationality: <%= t.nationality || 'N/A' %></p>
+          <ul>
+            <% drivers.filter(d => d.team && d.team.name === t.name).forEach(d => { %>
+              <li><%= d.forename %> <%= d.surname %> (<%= d.code %>)</li>
+            <% }) %>
+          </ul>
+        </section>
+      <% }); %>
+    </div>
+
+    <script src="/js/app.js"></script>
+
+  </body>
+
+</html>

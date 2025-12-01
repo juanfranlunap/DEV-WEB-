@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register Driver</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <h1>Register Driver</h1>
+
+  <form action="/driver" method="POST">
+    <label>Number:</label>
+    <input type="number" name="num" required>
+
+    <label>Code:</label>
+    <input type="text" name="code" maxlength="3" required>
+
+    <label>Forename:</label>
+    <input type="text" name="forename" required>
+
+    <label>Surname:</label>
+    <input type="text" name="surname" required>
+
+    <label>Date of birth:</label>
+    <input type="date" name="dob" required>
+
+    <label>Nationality:</label>
+    <select name="nationality" required>
+      <% countries.forEach(c => { %>
+        <option value="<%= c.code %>"><%= c.label %></option>
+      <% }); %>
+    </select>
+
+    <label>Team:</label>
+    <select name="teamId" required>
+      <% teams.forEach(t => { %>
+        <option value="<%= t.id %>"><%= t.name %></option>
+      <% }); %>
+    </select>
+
+    <label>URL:</label>
+    <input type="text" name="url">
+
+    <button type="submit">Save</button>
+  </form>
+
+  <br>
+  <a href="/drivers">View Drivers</a>
+
+</body>
+</html>
